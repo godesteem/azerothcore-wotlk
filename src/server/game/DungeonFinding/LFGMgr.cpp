@@ -800,6 +800,10 @@ namespace lfg
         m_Testing = !m_Testing;
         sWorld->SendWorldText(m_Testing ? LANG_DEBUG_LFG_ON : LANG_DEBUG_LFG_OFF);
     }
+    void LFGMgr::ToggleAnyGroupAllowed()
+    {
+        m_AnyGroupAllowed = !m_AnyGroupAllowed;
+    }
 
     /**
         Leaves Dungeon System. Player/Group is removed from queue, rolechecks, proposals
@@ -1826,7 +1830,7 @@ namespace lfg
             if (itPlayers->second.accept != LFG_ANSWER_AGREE)   // No answer (-1) or not accepted (0)
                 allAnswered = false;
 
-        if (!m_Testing && !allAnswered)
+        if (!m_AnyGroupAllowed && !m_Testing && !allAnswered)
         {
             for (LfgProposalPlayerContainer::const_iterator it = proposal.players.begin(); it != proposal.players.end(); ++it)
                 SendLfgUpdateProposal(it->first, proposal);

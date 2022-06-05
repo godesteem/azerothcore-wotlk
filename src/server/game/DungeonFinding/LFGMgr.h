@@ -575,8 +575,10 @@ namespace lfg
         static void SendLfgQueueStatus(ObjectGuid guid, LfgQueueStatusData const& data);
         // debug lfg command
         void ToggleTesting();
+        void ToggleAnyGroupAllowed();
         /// For 1 player queue testing
         [[nodiscard]] bool IsTesting() const { return m_Testing; }
+        [[nodiscard]] bool IsAnyGroupAllowed() const { return m_AnyGroupAllowed; }
 
         void SetDungeon(ObjectGuid guid, uint32 dungeon);
 
@@ -631,6 +633,7 @@ namespace lfg
         LfgPlayerDataContainer PlayersStore;               ///< Player data
         LfgGroupDataContainer GroupsStore;                 ///< Group data
         bool m_Testing;
+        bool m_AnyGroupAllowed;
     };
 
 } // namespace lfg
